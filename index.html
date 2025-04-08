@@ -131,31 +131,31 @@
 		} else {
 			console.error("locations is not a valid array:", locations);
 		}
-
-		// 現在地ボタンの機能
-		function locateUser() {
-			if (!navigator.geolocation) {
-				alert("Geolocation is not supported by your browser.");
-				return;
-			}
-
-			navigator.geolocation.getCurrentPosition(
-				(position) => {
-					const lat = position.coords.latitude;
-					const lng = position.coords.longitude;
-
-					map.setView([lat, lng], 14); // 現在地に移動＆ズーム
-					L.marker([lat, lng]).addTo(map)
-						.bindPopup("あなたの現在地")
-						.openPopup();
-				}, (error) => {
-					alert("現在地を取得できませんでした。");
-					console.error(error);
-				}
-			);
-		}
 	}
 	window.onload = loadData;
+		
+	// 現在地ボタンの機能
+	function locateUser() {
+		if (!navigator.geolocation) {
+			alert("Geolocation is not supported by your browser.");
+			return;
+		}
+
+		navigator.geolocation.getCurrentPosition(
+			(position) => {
+				const lat = position.coords.latitude;
+				const lng = position.coords.longitude;
+
+				map.setView([lat, lng], 14); // 現在地に移動＆ズーム
+				L.marker([lat, lng]).addTo(map)
+					.bindPopup("あなたの現在地")
+					.openPopup();
+			}, (error) => {
+				alert("現在地を取得できませんでした。");
+				console.error(error);
+			}
+		);
+	}
 	</script>
 </body>
 
