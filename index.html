@@ -28,13 +28,14 @@
 	      padding: 5px;
 	      font-size: 12px;
 	      border-radius: 5px;
+              z-index: 1000;
 	    }
 	
 	    /* 現在地ボタンのスタイル */
 	    .locate-btn {
 	      position: absolute;
 	      top: 10px;
-	      left: 10px;
+	      left: 50px;
 	      background: white;
 	      border: 2px solid #ccc;
 	      padding: 8px 12px;
@@ -54,12 +55,13 @@
 	<button class="locate-btn" onclick="locateUser()">📍 現在地</button>
 
 	<script>
+	let map;
 	async function loadData() {
 		const response = await fetch(
 			'https://script.google.com/macros/s/AKfycbwwf3YhD9khvlQthsR1Db7zw_WMYiiagCmWxcKwNzXqMiw6E837QPJr5doke8lmYTrZ/exec');
 		const locations = await response.json();
 		console.log("Loaded locations:", locations);
-		const map = L.map("map").setView([34.92, 133.96], 13); // 初期表示
+		map = L.map("map").setView([34.92, 133.96], 13); // 初期表示
 		// ベースマップ（標準地図）
 		const baseMapStd = L.tileLayer(
 			"https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png", {
